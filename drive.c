@@ -14,7 +14,7 @@ void move(int msec, int speed, int m1, int m2) {
 	motor[rightMotor] = 0;
 }
 
-void forwards(int msec, int speed){
+void backwards(int msec, int speed){
 	move(msec, speed, 1, 1);
 }
 
@@ -34,7 +34,7 @@ void pointTurnRight(int msec, int speed) {
 	move(msec, speed, 1, 0);
 }
 
-void backwards(int msec, int speed) {
+void forwards(int msec, int speed) {
 	move(msec, speed, -1, -1);
 }
 

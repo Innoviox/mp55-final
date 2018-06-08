@@ -10,6 +10,16 @@ void turn(int speed) {
 
 int highArmTarget;
 
+void moveBack(){
+	while(SensorValue[quad1] > 1){
+		motor[leftArmMotor] = 50;
+		motor[rightArmMotor] = -50;
+	}
+
+		motor[leftArmMotor] = 0;
+		motor[rightArmMotor] = 0;
+}
+
 void moveLowArm(int target){
 	while(SensorValue[quad1] < target){
 		writeDebugStreamLine("val : %d",SensorValue[quad1]);
@@ -24,6 +34,7 @@ void moveLowArm(int target){
 	//while(1==1){
 		if(vexRT[Btn7R] == 1){
 			stall = false;
+			moveBack();
 		}
 		if(SensorValue[quad1] < endValue){
 			motor[leftArmMotor] = -stayValue;

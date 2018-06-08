@@ -57,7 +57,7 @@ task main()
 				}else if(vexRT[Btn5U] == 1){
 					moveLowArm(145);
 				}else if(vexRT[Btn6D] == 1){
-					moveFlag();
+					moveFlag();-
 				}else if(vexRT[Btn6U] == 1){
 					//moveHighArm(145);
 				}
