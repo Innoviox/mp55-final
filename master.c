@@ -27,7 +27,10 @@ Sun sunValues;
 
 task main()
 {
+    int count = 0;
     while (1==1) {
+        bool stay = true;
+        
         if (vexRT[Btn8L] == 1) {
             findSun(sunValues);
             isData = false;
@@ -51,17 +54,50 @@ task main()
             }
         } else {
             if (vexRT[Btn5D] == 1) {
-                moveLowArm(90);
+                moveHighArm(50);
             } else if (vexRT[Btn5U] == 1) {
-                moveLowArm(145);
+                moveHighArm(90);
             } else if (vexRT[Btn6D] == 1) {
                 moveFlag();
             } else if (vexRT[Btn6U] == 1) {
                 //moveHighArm(145);
             }
-            motor[topArmMotor] = vexRT[Ch1] / 3;
-            motor[leftArmMotor] = vexRT[Ch3] / 2;
-            motor[rightArmMotor] = -vexRT[Ch3] / 2;
+            
+            ---
+            int stayValue = 30;
+            if (vexRT[Ch1] == 0) {
+                if(stay){
+                        motor[topArmMotor] = -stayValue;
+                    } else{
+                        motor[topArmMotor] = stayValue;
+                    }
+            } else {
+                motor[topArmMotor] = vexRT[Ch1] / 3;
+            }
+
+            if (vexRT[Ch3] == 0){
+                if(stay){
+                        motor[leftArmMotor] = -stayValue;
+                        motor[rightArmMotor] = stayValue;
+                    } else{
+                        motor[leftArmMotor] = stayValue;
+                        motor[rightArmMotor] = -stayValue;
+                    }
+            } else {
+                motor[leftArmMotor] = vexRT[Ch3] / 2;
+                motor[rightArmMotor] = -vexRT[Ch3] / 2;
+            }
+            
+            count = count + 1;
+            if(count > 20){
+                count = 0;
+                if(stay){
+                    stay = false;
+                }else{
+                    stay = true;
+                }
+            }
+            ---
         }
         
         if (vexRT[Btn7L] == 1) {
