@@ -62,8 +62,7 @@ task main()
             } else if (vexRT[Btn6U] == 1) {
                 //moveHighArm(145);
             }
-            
-            ---
+           
             int stayValue = 30;
             if (vexRT[Ch1] == 0) {
                 if(stay){
@@ -91,13 +90,8 @@ task main()
             count = count + 1;
             if(count > 20){
                 count = 0;
-                if(stay){
-                    stay = false;
-                }else{
-                    stay = true;
-                }
+                stay = !stay;
             }
-            ---
         }
         
         if (vexRT[Btn7L] == 1) {
